@@ -1,8 +1,15 @@
+import 'package:blog/core/secrets/app_secrets.dart';
 import 'package:blog/core/theme/app_theme.dart';
-import 'package:blog/feautures/auth/presentation/pages/sign_up.dart';
+import 'package:blog/feautures/auth/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+   await Supabase.initialize(
+    anonKey:AppSecrets.supabaseAnnonKey ,
+    url: AppSecrets.supabaseUrl
+    );
   runApp(const MyApp());
 }
 
@@ -15,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.darkThemeMode,
       debugShowCheckedModeBanner: false,
-      home: SignUp(),
+      home: LoginPage(),
     );
   }
 }
